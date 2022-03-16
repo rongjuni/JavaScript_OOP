@@ -9,10 +9,25 @@ class Person{
     }
 
     info (){
-        console.log( `${this.fName}\n${this.pets}\n${this.residence}\n${this.hobbies}`)
+        let listedHobbies = this.hobbies;
+
+        if(this.hobbies.length > 2){
+            listedHobbies[0] = "are " + listedHobbies[0];
+            listedHobbies[listedHobbies.length -1] = "and " + listedHobbies[listedHobbies.length-1];
+            listedHobbies = listedHobbies.join(", ");
+        }else if (this.hobbies.length == 2){
+            listedHobbies[0] = "are " + listedHobbies[0]
+            listedHobbies = listedHobbies.join(" and ");
+        }else if (this.hobbies.length == 1){
+            listedHobbies[0] = "is " + listedHobbies[0]
+        }
+
+        console.log( 
+            `My name is ${this.fName}. I have total ${this.pets} pets and I live in ${this.residence}. My hobbies ${listedHobbies} `
+            );
     }
-    greeting(){
-        console.log("Hello fellow person!");
+    greeting(guest = "Guest"){
+        console.log("Hello " + guest + "fellow person!");
     }
 
 }
@@ -26,17 +41,21 @@ class Coder extends Person{
         super(name, pets, residence, hobbies);
         this.occupation = 'Full Stack WEb Developer';
     }
-    greeting(){
-        console.log( 'Hi TrueCoders!')
+    greeting(guest = 'Guest'){
+        console.log( 'Hi ' + guest + 'TrueCoders!')
     }
 }
 
 
-const djseo = new Person ('Matthew', 2, 'Single House', ['drinking','swimming'])
+const djseo = new Person ('Matthew', 2, 'VA', ['drinking','swimming','playing'])
 
 
-const chloe = new Coder('ChloeKim', 2, 'same house', ['cellphone','running'])
+const chloe = new Coder('ChloeKim', 2, 'LA', ['singing','movie'])
+const chloe2 = new Coder('Double K', 4, 'MD', ['cooking'])
 
 
 console.log(djseo.info())
 console.log(chloe.info());
+console.log(chloe2.info());
+
+djseo.greeting()
